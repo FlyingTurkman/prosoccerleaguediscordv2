@@ -21,6 +21,21 @@ export type regionType = {
 export type regionPermissionType = 'owner' | 'admin' | 'mod' | 'notPermission'
 
 
+export type teamType = {
+    _id: ObjectId,
+    guildId: string,
+    teamName: string,
+    teamTag: string,
+    teamAvatar?: string,
+    owner: string,
+    captain: string,
+    coCaptain?: string,
+    members: string[],
+    createdAt: Date
+}
+
+export type teamPermissionType = 'owner' | 'captain' | 'coCaption' | 'member' | 'notPermission'
+
 
 declare global {
     namespace NodeJS {
