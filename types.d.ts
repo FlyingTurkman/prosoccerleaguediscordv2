@@ -13,12 +13,12 @@ export type regionType = {
     regionAvatar: string,
     owner: string,
     admins: string[],
+    mods?: string[],
     official: boolean,
     createdAt: Date
 }
 
-
-
+export type regionPermissionType = 'owner' | 'admin' | 'mod' | 'notPermission'
 
 
 

@@ -15,11 +15,6 @@ import { ObjectId } from "mongodb";
 
 
 
-
-
-
-
-
 export const RegionCreate: Command = {
     name: 'region_create',
     description: 'You can create region for your leagues.',

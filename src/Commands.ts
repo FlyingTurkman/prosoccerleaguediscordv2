@@ -1,5 +1,6 @@
 import { Command } from "./Command";
 import { Hello } from "./commands/hello";
+import { RegionAdminAdd } from "./commands/region_admin_add";
 import { RegionCreate } from "./commands/region_create";
 
 
@@ -7,5 +8,6 @@ import { RegionCreate } from "./commands/region_create";
 
 export const Commands: Command[] = [
     Hello,
-    RegionCreate
+    RegionCreate,
+    RegionAdminAdd
 ]
