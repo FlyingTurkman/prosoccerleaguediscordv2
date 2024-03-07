@@ -48,7 +48,7 @@ export const LookingForTeam: Command = {
                 { name: 'About player', value: about?.toString() || 'Unknown' }
             ])
 
-            embed.setFooter({ text: `${team? `<@${user.id}> playing for ${team.teamName} [${team.teamTag}]`: 'Free agent'}`, iconURL: team?.teamAvatar? team.teamAvatar : undefined })
+            embed.setFooter({ text: `${team? `${user.username} playing for ${team.teamName} [${team.teamTag}]`: 'Free agent'}`, iconURL: team?.teamAvatar? team.teamAvatar : undefined })
             const textChannel = await client.channels.fetch(channel)
 
             if (!textChannel || !textChannel?.isTextBased()) {
