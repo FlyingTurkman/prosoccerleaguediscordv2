@@ -34,7 +34,7 @@ export type teamType = {
     createdAt: Date
 }
 
-export type teamPermissionType = 'owner' | 'captain' | 'coCaption' | 'member' | 'notPermission'
+export type teamPermissionType = 'owner' | 'captain' | 'coCaptain' | 'member' | 'notPermission'
 
 
 declare global {

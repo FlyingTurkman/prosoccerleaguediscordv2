@@ -1,5 +1,5 @@
-import { teamType } from "types"
-import { Teams } from "../../../../src/lib/mongodb/models"
+import { Teams } from "../../../../src/lib/mongodb/models";
+import { teamType } from "../../../../types";
 
 
 
@@ -12,7 +12,11 @@ import { Teams } from "../../../../src/lib/mongodb/models"
 
 
 
-export async function checkUserTeamId(userId: string): Promise<string | null> {
+
+
+
+
+export async function getUserTeam(userId: string): Promise<teamType | null> {
     try {
         const team: teamType | null = await Teams.findOne({
             $or: [
@@ -27,7 +31,7 @@ export async function checkUserTeamId(userId: string): Promise<string | null> {
             return null
         }
 
-        return team.guildId
+        return team
     } catch (error) {
         console.log(error)
         return null
