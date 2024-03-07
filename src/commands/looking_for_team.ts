@@ -1,6 +1,7 @@
 import { Client, CommandInteraction, EmbedBuilder } from "discord.js";
 import { Command } from "../../src/Command";
 import { STRING } from "../../src/lib/utils/constants";
+import { getUserTeam } from "../../src/lib/utils/team/getUserTeam";
 
 
 
@@ -35,16 +36,19 @@ export const LookingForTeam: Command = {
                 })
             }
 
+            const team = await getUserTeam(user.id)
+
             const embed = new EmbedBuilder()
 
             embed.setTitle(`${user.username} is looking for teams.`)
             embed.setThumbnail(user.avatarURL())
             embed.addFields([
-                { name: 'Prefered positions', value: positions?.toString() || '' },
-                { name: 'In game hours', value: hours?.toString() || '' },
-                { name: 'About player', value: about?.toString() || '' }
+                { name: 'Prefered positions', value: positions?.toString() || 'Unknown' },
+                { name: 'In game hours', value: hours?.toString() || 'Unknown' },
+                { name: 'About player', value: about?.toString() || 'Unknown' }
             ])
 
+            embed.setFooter({ text: `${team? `<@${user.id}> playing for ${team.teamName} [${team.teamTag}]`: 'Free agent'}`, iconURL: team?.teamAvatar? team.teamAvatar : undefined })
             const textChannel = await client.channels.fetch(channel)
 
             if (!textChannel || !textChannel?.isTextBased()) {
@@ -54,7 +58,7 @@ export const LookingForTeam: Command = {
                 })
             }
 
-            //TODO: oyuncuların takımlarına bakılacak
+
             
             await interaction.channel?.send({
                 content: `<@${user.id}> for contacts.`,
