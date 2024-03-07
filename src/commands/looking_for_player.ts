@@ -50,6 +50,7 @@ export const LookingForPlayer: Command = {
 
                 return
             }
+
             const embed = new EmbedBuilder()
 
             embed.setTitle(`${team?.teamName} [${team?.teamTag}] looking for players.`)
@@ -58,8 +59,8 @@ export const LookingForPlayer: Command = {
             
             embed.setFields([
                 { name: 'Team Name', value: team.teamName },
-                { name: 'Positions', value: position?.toString() || '' },
-                { name: 'About', value: about?.toString() || '' }
+                { name: 'Positions', value: position?.toString() || 'Unknown' },
+                { name: 'About', value: about?.toString() || 'Unknown' }
             ])
 
             await interaction.channel?.send({
