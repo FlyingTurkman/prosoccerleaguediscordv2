@@ -49,6 +49,7 @@ export const LookingForTeam: Command = {
             ])
 
             embed.setFooter({ text: `${team? `${user.username} playing for ${team.teamName} [${team.teamTag}]`: 'Free agent'}`, iconURL: team?.teamAvatar? team.teamAvatar : undefined })
+            
             const textChannel = await client.channels.fetch(channel)
 
             if (!textChannel || !textChannel?.isTextBased()) {
@@ -57,8 +58,6 @@ export const LookingForTeam: Command = {
                     ephemeral: true
                 })
             }
-
-
             
             await interaction.channel?.send({
                 content: `<@${user.id}> for contacts.`,
