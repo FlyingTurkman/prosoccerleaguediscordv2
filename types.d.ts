@@ -2,6 +2,15 @@ import { ObjectId } from "mongodb"
 
 
 
+//TODO: in game id eklenecek
+
+export type userType = {
+    _id: ObjectId,
+    userId: string,
+    userName: string,
+    steamId?: string,
+    createdAt: Date
+}
 
 
 

@@ -32,7 +32,7 @@ const client =  new Client({
 
 
 try {
-    mongoose.connect(process.env.mongoUri || '', {dbName: 'test'})
+    mongoose.connect(process.env.mongoUri || '', { dbName: process.env.dbName })
 .then(() => {
     console.log('Bağlantı başarıyla kuruldu')
 })

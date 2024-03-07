@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { regionType, teamType } from '../../../types'
+import { regionType, teamType, userType } from '../../../types'
 
 
 
@@ -80,6 +80,30 @@ export const teamSchema = new Schema<teamType>({
         required: false
     },
     members: [String],
+    createdAt: {
+        type: Date,
+        required: true
+    }
+})
+
+
+export const userSchema = new Schema<userType>({
+    _id: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    userId: {
+        type: String,
+        required: true
+    },
+    userName: {
+        type: String,
+        required: true
+    },
+    steamId: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         required: true
