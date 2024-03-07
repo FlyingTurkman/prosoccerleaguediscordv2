@@ -31,8 +31,6 @@ export async function getUserTeam(userId: string): Promise<teamType | null> {
             return null
         }
 
-        console.log('team', team)
-
         return team
     } catch (error) {
         console.log(error)

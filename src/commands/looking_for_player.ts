@@ -39,7 +39,6 @@ export const LookingForPlayer: Command = {
                 return
             }
 
-
             const team = await getUserTeam(user)
 
             if (!team) {

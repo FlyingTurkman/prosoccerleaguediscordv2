@@ -29,7 +29,7 @@ export const TeamCreate: Command = {
         try {
             const teamName = interaction.options.get('team_name')?.value
             const teamTag = interaction.options.get('team_tag')?.value
-            const teamAvatar = interaction.guild?.bannerURL()
+            const teamAvatar = interaction.guild?.iconURL()
             const guildId = interaction.guildId
             const owner = interaction.user.id
 
@@ -62,7 +62,7 @@ export const TeamCreate: Command = {
                 guildId,
                 teamName,
                 teamTag,
-                teamAvatar,
+                teamAvatar: teamAvatar? teamAvatar: undefined,
                 owner,
                 captain: owner,
                 members: [owner],
