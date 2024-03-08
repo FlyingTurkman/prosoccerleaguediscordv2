@@ -1,3 +1,4 @@
+import { Client, Interaction } from "discord.js"
 import { ObjectId } from "mongodb"
 
 
@@ -44,6 +45,28 @@ export type teamType = {
 }
 
 export type teamPermissionType = 'owner' | 'captain' | 'coCaptain' | 'member' | 'notPermission'
+
+
+//TODO: accepted değerleri değiştirilecek
+
+export type transferOfferType = {
+    _id: ObjectId,
+    fromPlayer: string,
+    fromTeam: string,
+    toPlayer: string,
+    toTeam?: string,
+    teamAccepted: boolean,
+    playerAccepter: boolean,
+    botChecked: boolean,
+    createdAt: Date,
+    updateAt: Date
+}
+
+
+export type buttonInteractionType = {
+    customId: string,
+    run: (client: Client, interaction: Interaction) => void
+}
 
 
 declare global {
