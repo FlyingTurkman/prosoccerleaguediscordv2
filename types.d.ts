@@ -55,12 +55,15 @@ export type transferOfferType = {
     fromTeam: string,
     toPlayer: string,
     toTeam?: string,
-    teamAccepted: boolean,
-    playerAccepter: boolean,
+    teamAccepted: transferStatusType,
+    playerAccepted: transferStatusType,
     botChecked: boolean,
     createdAt: Date,
     updateAt: Date
 }
+
+
+export type transferStatusType = 'waitingForResponse' | 'accepted' | 'rejected'
 
 
 export type buttonInteractionType = {

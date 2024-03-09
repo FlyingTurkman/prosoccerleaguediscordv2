@@ -133,11 +133,11 @@ export const transferOfferSchema = new Schema<transferOfferType>({
         required: false
     },
     teamAccepted: {
-        type: Boolean,
+        type: Schema.Types.Mixed,
         required: true
     },
-    playerAccepter: {
-        type: Boolean,
+    playerAccepted: {
+        type: Schema.Types.Mixed,
         required: true
     },
     botChecked: {
