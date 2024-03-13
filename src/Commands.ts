@@ -8,6 +8,7 @@ import { Register } from "./commands/register";
 import { TeamCaptain } from "./commands/team_captain";
 import { TeamCoCaptain } from "./commands/team_co_captain";
 import { TeamCreate } from "./commands/team_create";
+import { TeamLeave } from "./commands/team_leave";
 import { TransferOffer } from "./commands/transfer_offer";
 
 
@@ -20,6 +21,7 @@ export const Commands: Command[] = [
     TeamCreate,
     TeamCaptain,
     TeamCoCaptain,
+    TeamLeave,
     TransferOffer,
     LookingForTeam,
     LookingForPlayer,

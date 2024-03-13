@@ -53,6 +53,7 @@ async function transferPlayer(transferOffer: transferOfferType) {
             }
         })
 
+        //TODO: burada co-captain ise co-captain undefined olarak değiştirilecek.
         if (transferOffer.toTeam) {
             await Teams.updateOne({
                 _id: transferOffer.toTeam
