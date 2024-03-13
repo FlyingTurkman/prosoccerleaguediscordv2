@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import ready from './listeners/ready'
 import interactionCreate from './listeners/interactionCreate'
+import transferListener from './listeners/transferListener'
 
 
 
@@ -44,5 +45,6 @@ try {
 
 ready(client)
 interactionCreate(client)
+transferListener(client)
 
 client.login(process.env.botToken)

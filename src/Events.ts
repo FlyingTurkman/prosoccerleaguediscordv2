@@ -1,5 +1,6 @@
 import { buttonInteractionType } from "types";
 import { AcceptTransferOffer } from "./events/acceptTransferOffer";
+import { ResponseTransferOffer } from "./events/responseTransferOffer";
 
 
 
@@ -13,5 +14,6 @@ import { AcceptTransferOffer } from "./events/acceptTransferOffer";
 
 
 export const Events: buttonInteractionType[] = [
-    AcceptTransferOffer
+    AcceptTransferOffer,
+    ResponseTransferOffer
 ]

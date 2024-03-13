@@ -101,11 +101,11 @@ export const TransferOffer: Command = {
             const row = new ActionRowBuilder<ButtonBuilder>()
             row.addComponents(
                 new ButtonBuilder()
-                    .setCustomId(`accept_transfer_offer_${newTransferOffer._id.toString()}`)
+                    .setCustomId(`response_transfer_offer_${newTransferOffer._id.toString()}_accepted`)
                     .setLabel('Accept')
                     .setStyle(ButtonStyle.Success),
                 new ButtonBuilder()
-                    .setCustomId(`reject_transfer_offer_${newTransferOffer._id.toString()}`)
+                    .setCustomId(`response_transfer_offer_${newTransferOffer._id.toString()}_rejected`)
                     .setLabel('Reject')
                     .setStyle(ButtonStyle.Danger)
             )
