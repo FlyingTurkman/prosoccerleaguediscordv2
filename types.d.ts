@@ -78,7 +78,8 @@ declare global {
             botToken: string,
             mongoUri: string,
             appPath: string,
-            dbName: string
+            dbName: string,
+            botLogChannelId: string
         }
     }
 }

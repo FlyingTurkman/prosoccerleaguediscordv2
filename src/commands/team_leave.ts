@@ -19,7 +19,7 @@ import { Teams } from "../../src/lib/mongodb/models";
 
 export const TeamLeave: Command = {
     name: 'team_leave',
-    description: 'Care if it is happend out of transfer season admins may punish you.',
+    description: 'Care if it happend out of transfer season admins may punish you.',
     run: async (client: Client, interaction: CommandInteraction) => {
         try {
             const user = interaction.user.id
