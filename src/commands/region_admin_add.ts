@@ -1,8 +1,9 @@
-import { Client, CommandInteraction } from "discord.js";
+import { Client, CommandInteraction, messageLink } from "discord.js";
 import { Command } from "../../src/Command";
-import { USER } from "../../src/lib/utils/constants";
+import { USER, regionColor } from "../../src/lib/utils/constants";
 import { getUserRegionPermission } from "../../src/lib/utils/region/getUserRegionPermission";
 import { Regions } from "../../src/lib/mongodb/models";
+import { botLogger } from "../../src/lib/utils/botLogger";
 
 
 
@@ -65,6 +66,12 @@ export const RegionAdminAdd: Command = {
                 })
     
                 return
+            }
+
+            try {
+                botLogger(client, 'Region Admin Added', `<@${admin.toString()}> added as admin for ${client.guilds.cache.get(guildId)?.name}`, regionColor)
+            } catch (error) {
+                console.log(error)
             }
     
             await interaction.reply({

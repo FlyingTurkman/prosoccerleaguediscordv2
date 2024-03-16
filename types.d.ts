@@ -79,7 +79,9 @@ declare global {
             mongoUri: string,
             appPath: string,
             dbName: string,
-            botLogChannelId: string
+            botLogChannelId: string,
+            adminId: string,
+            viceAdminId: string
         }
     }
 }

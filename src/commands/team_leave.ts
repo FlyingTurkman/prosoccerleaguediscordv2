@@ -2,6 +2,8 @@ import { Client, CommandInteraction } from "discord.js";
 import { Command } from "../../src/Command";
 import { getUserTeam } from "../../src/lib/utils/team/getUserTeam";
 import { Teams } from "../../src/lib/mongodb/models";
+import { botLogger } from "../../src/lib/utils/botLogger";
+import { teamColor } from "../../src/lib/utils/constants";
 
 
 
@@ -63,6 +65,12 @@ export const TeamLeave: Command = {
                 })
 
                 return
+            }
+
+            try {
+                botLogger(client, `A player left from team`, `<@${user}> left from ${userTeam.teamName}`, 'Red', true)
+            } catch (error) {
+                console.log(error)
             }
 
             interaction.reply({

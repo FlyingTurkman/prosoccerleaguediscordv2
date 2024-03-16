@@ -1,10 +1,11 @@
 import { Client, CommandInteraction } from "discord.js";
 import { Command } from "../../src/Command";
 import { Teams } from "../../src/lib/mongodb/models";
-import { STRING } from "../../src/lib/utils/constants";
+import { STRING, teamColor } from "../../src/lib/utils/constants";
 import { teamType } from "../../types";
 import { checkUserTeamId } from "../../src/lib/utils/team/checkUserTeamId";
 import { ObjectId } from "mongodb";
+import { botLogger } from "../../src/lib/utils/botLogger";
 
 
 
@@ -76,6 +77,12 @@ export const TeamCreate: Command = {
                 })
 
                 return
+            }
+
+            try {
+                botLogger(client, `${teamName} team created`, `Team created by <@${owner}>`, teamColor)
+            } catch (error) {
+                console.log(error)
             }
 
             await interaction.reply({

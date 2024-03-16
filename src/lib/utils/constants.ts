@@ -1,3 +1,5 @@
+import { ColorResolvable } from "discord.js"
+
 // Command option types
 export const SUB_COMMAND = 1
 export const SUB_COMMAND_GROUP = 2
@@ -10,3 +12,9 @@ export const ROLE = 8
 export const MENTIONABLE = 9
 export const NUMBER = 10
 export const ATTACHMENT = 11
+
+// Log colors
+
+export const regionColor: ColorResolvable = 'Aqua'
+export const teamColor: ColorResolvable = 'Blue'
+export const transferColor: ColorResolvable = 'Yellow'

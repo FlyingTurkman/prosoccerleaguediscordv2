@@ -1,9 +1,10 @@
 import { Client, CommandInteraction } from "discord.js";
 import { Command } from "../../src/Command";
 import { Regions } from "../../src/lib/mongodb/models";
-import { STRING } from "../../src/lib/utils/constants";
+import { STRING, regionColor } from "../../src/lib/utils/constants";
 import { regionType } from "../../types";
 import { ObjectId } from "mongodb";
+import { botLogger } from "../../src/lib/utils/botLogger";
 
 
 
@@ -60,6 +61,12 @@ export const RegionCreate: Command = {
                     content: 'An error has occured.',
                     ephemeral: true
                 })
+            }
+
+            try {
+                botLogger(client, `${regionName} region created`, `Region created by <@${ownerId}>`, regionColor)
+            } catch (error) {
+                console.log(error)
             }
 
             await interaction.reply({

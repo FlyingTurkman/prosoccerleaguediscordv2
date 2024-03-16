@@ -1,11 +1,12 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, Client, CommandInteraction, EmbedBuilder } from "discord.js";
 import { Command } from "../../src/Command";
-import { USER } from "../../src/lib/utils/constants";
+import { USER, transferColor } from "../../src/lib/utils/constants";
 import { checkUserTeamPermission } from "../../src/lib/utils/team/checkUserTeamPermission";
 import { getUserTeam } from "../../src/lib/utils/team/getUserTeam";
 import { teamType, transferOfferType } from "../../types";
 import { TransferOffers } from "../../src/lib/mongodb/models";
 import { ObjectId } from "mongodb";
+import { botLogger } from "../../src/lib/utils/botLogger";
 
 
 
@@ -109,6 +110,12 @@ export const TransferOffer: Command = {
                     .setLabel('Reject')
                     .setStyle(ButtonStyle.Danger)
             )
+
+            try {
+                botLogger(client, `New transfer offer from ${userTeam.teamName}` ,`<@${user}> sended transfer offer to <@${player.toString()}> from ${userTeam.teamName}`, transferColor)
+            } catch (error) {
+                console.log(error)
+            }
 
             await client.users.cache.get(player.toString())?.send({
                 content: `<@${user}> for contact.`,

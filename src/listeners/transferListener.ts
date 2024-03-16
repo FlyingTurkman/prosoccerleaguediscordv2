@@ -1,6 +1,8 @@
 import { Client } from "discord.js"
 import { Teams, TransferOffers } from "../../src/lib/mongodb/models"
-import { transferOfferType } from "../../types"
+import { teamType, transferOfferType } from "../../types"
+import { botLogger } from "../../src/lib/utils/botLogger"
+import { transferColor } from "../../src/lib/utils/constants"
 
 
 
@@ -34,7 +36,7 @@ export default async function transferListener(client: Client) {
                 
                 const transferOffer: transferOfferType = data.fullDocument
 
-                transferPlayer(transferOffer)
+                transferPlayer(client, transferOffer)
             }
         })
     } catch (error) {
@@ -43,15 +45,25 @@ export default async function transferListener(client: Client) {
     
 }
 
-async function transferPlayer(transferOffer: transferOfferType) {
+async function transferPlayer(client: Client, transferOffer: transferOfferType) {
     try {
-        await Teams.updateOne({
+        /* await Teams.updateOne({
             _id: transferOffer.fromTeam
         }, {
             $addToSet: {
                 members: transferOffer.toPlayer
             }
-        })
+        }) */
+
+        const toTeam: teamType | null = await Teams.findByIdAndUpdate({
+            _id: transferOffer.fromTeam
+        }, {
+            $addToSet: {
+                members: transferOffer.toPlayer
+            }
+        }, { new: true })
+
+
 
         //TODO: burada co-captain ise co-captain undefined olarak değiştirilecek.
         if (transferOffer.toTeam) {
@@ -63,6 +75,8 @@ async function transferPlayer(transferOffer: transferOfferType) {
                 }
             })
         }
+
+        
 
         await TransferOffers.updateOne({
             _id: transferOffer._id.toString()
@@ -81,6 +95,7 @@ async function transferPlayer(transferOffer: transferOfferType) {
             }
         })
 
+        botLogger(client, `Transfer offer accepted`, `<@${transferOffer.toPlayer}> joined to ${toTeam?.teamName}`, transferColor)
     } catch (error) {
         console.log(error)
     }
