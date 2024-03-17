@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { regionType, teamType, transferOfferType, userType } from '../../../types'
+import { matchType, regionType, teamType, transferOfferType, userType } from '../../../types'
 
 
 
@@ -149,6 +149,44 @@ export const transferOfferSchema = new Schema<transferOfferType>({
         required: true,
     },
     updateAt: {
+        type: Date,
+        required: true
+    }
+})
+
+export const matchSchema = new Schema<matchType>({
+    _id: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    homeTeam: {
+        type: String,
+        required: true
+    },
+    awayTeam: {
+        type: String,
+        required: true
+    },
+    streamers: [String],
+    homePlayers: [String],
+    awayPlayers: [String],
+    result: {
+        type: Schema.Types.Mixed,
+        required: true
+    },
+    homeScore: {
+        type: Number,
+        required: true
+    },
+    awayScore: {
+        type: Number,
+        required: true
+    },
+    leagueId: {
+        type: Number,
+        required: true
+    },
+    createdAt: {
         type: Date,
         required: true
     }

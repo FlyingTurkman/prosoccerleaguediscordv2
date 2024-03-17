@@ -2,6 +2,7 @@ import { Command } from "./Command";
 import { Hello } from "./commands/hello";
 import { LookingForPlayer } from "./commands/looking_for_player";
 import { LookingForTeam } from "./commands/looking_for_team";
+import { MatchCreate } from "./commands/match_create";
 import { RegionAdminAdd } from "./commands/region_admin_add";
 import { RegionCreate } from "./commands/region_create";
 import { Register } from "./commands/register";
@@ -27,5 +28,6 @@ export const Commands: Command[] = [
     TransferOffer,
     LookingForTeam,
     LookingForPlayer,
-    Register
+    Register,
+    MatchCreate
 ]

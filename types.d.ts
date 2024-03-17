@@ -71,6 +71,22 @@ export type buttonInteractionType = {
     run: (client: Client, interaction: Interaction) => void
 }
 
+export type matchType = {
+    _id: ObjectId,
+    homeTeam: string,
+    awayTeam: string,
+    streamers?: string[],
+    homePlayers?: string[],
+    awayPlayers?: string[],
+    result: matchResultType,
+    homeScore: number,
+    awayScore: number,
+    leagueId: number,
+    createdAt: Date
+}
+
+export type matchResultType = 'notPlayed' | 'home' | 'draw' | 'away'
+
 
 declare global {
     namespace NodeJS {
