@@ -41,6 +41,17 @@ export const TransferOffer: Command = {
                 return
             }
 
+            const playerAccount = client.users.cache.get(player.toString())
+
+            if (playerAccount?.bot) {
+                await interaction.reply({
+                    content: 'You can not send transfer offer to bots.',
+                    ephemeral: true
+                })
+
+                return
+            }
+
             const userTeam = await getUserTeam(user)
 
             if (!userTeam) {
@@ -64,6 +75,24 @@ export const TransferOffer: Command = {
             }
 
             const playerTeam = await getUserTeam(player.toString())
+
+            if (playerTeam?.owner == player || playerTeam?.captain == player) {
+                await interaction.reply({
+                    content: 'You can not send transfer offer to other team owner or captain.',
+                    ephemeral: true
+                })
+
+                return
+            }
+
+            if (userTeam._id.toString() == playerTeam?._id.toString()) {
+                await interaction.reply({
+                    content: 'This player already in your team.',
+                    ephemeral: true
+                })
+
+                return
+            }
 
             const newTransferOffer: transferOfferType | null = await TransferOffers.create({
                 _id: new ObjectId(),
@@ -90,12 +119,13 @@ export const TransferOffer: Command = {
             const embed = new EmbedBuilder()
 
             embed.setTitle(`${userTeam.teamName} [${userTeam.teamTag}] want to transfer you.`)
+
             if (userTeam.teamAvatar) {
                 embed.setThumbnail(userTeam.teamAvatar)
             }
             
             embed.addFields([
-                { name: 'Offer from team', value: userTeam.teamName },
+                { name: 'Offer from team', value: userTeam.teamName || 'Unknown' },
                 { name: 'Offer from player', value: client.users.cache.get(user)?.username || 'Unknown'}
             ])
 

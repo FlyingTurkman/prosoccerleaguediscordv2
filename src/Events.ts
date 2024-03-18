@@ -14,6 +14,5 @@ import { ResponseTransferOffer } from "./events/responseTransferOffer";
 
 
 export const Events: buttonInteractionType[] = [
-    AcceptTransferOffer,
     ResponseTransferOffer
 ]

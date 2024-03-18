@@ -95,7 +95,7 @@ async function transferPlayer(client: Client, transferOffer: transferOfferType) 
             }
         })
 
-        botLogger(client, `Transfer offer accepted`, `<@${transferOffer.toPlayer}> joined to ${toTeam?.teamName}`, transferColor)
+        botLogger(client, `Transfer offer accepted`, `<@${transferOffer.toPlayer}> joined to ${toTeam?.teamName || ''}`, transferColor)
     } catch (error) {
         console.log(error)
     }

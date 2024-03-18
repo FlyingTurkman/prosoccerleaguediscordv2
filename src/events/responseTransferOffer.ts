@@ -120,7 +120,7 @@ export const ResponseTransferOffer: buttonInteractionType = {
                 }
 
                 await interaction.reply({
-                    content: 'Offer succesfull accepted. Waiting for system confirmation.',
+                    content: 'Offer responsed.',
                     ephemeral: true
                 })
             }

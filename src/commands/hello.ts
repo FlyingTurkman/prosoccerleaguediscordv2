@@ -20,24 +20,32 @@ export const Hello: Command = {
     type: ApplicationCommandType.ChatInput,
     run: async (client: Client, interaction: CommandInteraction) => {
 
-        const userId = '615661042437062814'
+        try {
+            const userId = '615661042437062814'
 
-        const row = new ActionRowBuilder<ButtonBuilder>()
-        row.addComponents(
-            new ButtonBuilder()
-                .setCustomId(`accept_transfer_offer_askdjhajksdhasdasd`)
-                .setLabel('Tıkla')
-                .setStyle(ButtonStyle.Success)
-        )
+            const row = new ActionRowBuilder<ButtonBuilder>()
+            row.addComponents(
+                new ButtonBuilder()
+                    .setCustomId(`accept_transfer_offer_askdjhajksdhasdasd`)
+                    .setLabel('Tıkla')
+                    .setStyle(ButtonStyle.Success)
+            )
 
-        await interaction.reply({
-            content: 'Test',
-            ephemeral: true
-        })
+            await interaction.reply({
+                content: 'Test'
+            })
 
-        await client.users.cache.get(userId)?.send({
+        } catch (error) {
+            console.log(error)
+            interaction.reply({
+                content: 'Error'
+            })
+        }
+
+        
+        /* await client.users.cache.get(userId)?.send({
             content: 'Test et',
             components: [row]
-        })
+        }) */
     }
 }

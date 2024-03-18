@@ -6,37 +6,54 @@ import { Events } from "../../src/Events";
 
 export default (client: Client): void => {
     client.on("interactionCreate", async (interaction: Interaction) => {
-        if (interaction.isButton()) {
-            if (interaction.channel && interaction.channel.isTextBased()) {
-                await handleButtonCommand(interaction.customId, client, interaction)
+        try {
+            if (interaction.isButton()) {
+                if (interaction.channel && interaction.channel.isTextBased()) {
+                    await handleButtonCommand(interaction.customId, client, interaction)
+                }
+                
             }
-            
+            if (interaction.isCommand()) {
+                await handleSlashCommand(client, interaction);
+            }
+        } catch (error) {
+            console.log(error)
         }
-        if (interaction.isCommand()) {
-            await handleSlashCommand(client, interaction);
-        }
+        
     });
 };
 
 const handleSlashCommand = async (client: Client, interaction: CommandInteraction): Promise<void> => {
-    const slashCommand = Commands.find(c => c.name === interaction.commandName);
-    if (!slashCommand) {
+    try {
+        const slashCommand = Commands.find(c => c.name === interaction.commandName);
+        if (!slashCommand) {
+            interaction.followUp({ content: "An error has occurred" });
+            return;
+        }
+        slashCommand.run(client, interaction);
+    } catch (error) {
+        console.log(error)
         interaction.followUp({ content: "An error has occurred" });
-        return;
     }
-    slashCommand.run(client, interaction);
+    
 };
 
 
 const handleButtonCommand = async (customId: string, client: Client, interaction: ButtonInteraction): Promise<void> => {
-    const event = Events.find((e) => customId.startsWith(e.customId))
-    if (!event) {
-        if (interaction.isRepliable()){
-            interaction.followUp({ content: "An error has occurred" })
+    try {
+        const event = Events.find((e) => customId.startsWith(e.customId))
+        if (!event) {
+            if (interaction.isRepliable()){
+                interaction.followUp({ content: "An error has occurred" })
+            }
+            return
         }
-        return
+        event.run(client, interaction) 
+    } catch (error) {
+        interaction.followUp({ content: "An error has occurred" })
+        console.log(error)
     }
-    event.run(client, interaction)    
+       
 }
 
 
